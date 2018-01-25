@@ -8,17 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var ATableView: UITableView!
+    @IBOutlet weak var ACollectionView: UICollectionView!
     
     let animals = ["dog", "cat", "horse", "dog", "cat", "horse", "dog", "cat", "horse", "dog", "cat", "horse"]
+    //var selectedAnimals = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ATableView.delegate = self
         ATableView.dataSource = self
+        ACollectionView.delegate = self
+        ACollectionView.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -47,6 +51,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return animals.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = ACollectionView.dequeueReusableCell(withReuseIdentifier: "CVCell", for: indexPath) as! ACVCell
+        
+        cell.cvImage.layer.cornerRadius = cell.cvImage.frame.height / 2
+        cell.cvImage.image = UIImage(named: animals[indexPath.row])
+        
+        return cell
+    }
 
 
 }
