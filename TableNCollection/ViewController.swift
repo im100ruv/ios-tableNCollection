@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var ACollectionView: UICollectionView!
     
     let animals = ["dog", "cat", "horse", "dog", "cat", "horse", "dog", "cat", "horse", "dog", "cat", "horse"]
-    //var selectedAnimals = [String]()
+    var selectedAnimals = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +51,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = ATableView.dequeueReusableCell(withIdentifier: "TVCell", for: indexPath) as! AnimalTVCell
+//        
+//        cell.ATableCellView.layer.borderColor = UIColor.blue.cgColor
+//        cell.ATableCellView.layer.borderWidth = 2
+        for _ in 1...10 {
+            selectedAnimals.append(animals[indexPath.row])
+        }
+    }
+    
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        let cell = ATableView.dequeueReusableCell(withIdentifier: "TVCell", for: indexPath) as! AnimalTVCell
+//
+//        cell.ATableCellView.layer.borderColor = UIColor.lightGray.cgColor
+//        cell.ATableCellView.layer.borderWidth = 0.5
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return animals.count
     }
